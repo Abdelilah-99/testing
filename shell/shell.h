@@ -6,8 +6,11 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_ARGUMENTS 1024
+
 extern char **environ;
 int _strlen(char *s);
 void _puts(char *str);
@@ -22,4 +25,5 @@ void trim_whitespace(char *str);
 void execute_command(char *command);
 char *find_command_path(char *command, char *path);
 void run_shell();
+
 #endif

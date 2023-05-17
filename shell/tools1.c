@@ -13,7 +13,7 @@ char *_strcpy(char *dest, char *src)
 		i++;
 	}
 	dest[i] = '\0';
-	return (dest);
+	return(dest);
 }
 
 
@@ -30,8 +30,9 @@ if (!str)
 }
 char *_getenv(const char *name)
 {
+	int i = 0;
 
-	for (int i = 0; environ[i]; i++)
+	for (; environ[i]; i++)
 	{
 		char *env_name = environ[i];
 

@@ -3,12 +3,17 @@
 char *get_token(char *command)
 {
 	char *token;
+	char *arguments[MAX_ARGUMENTS];
+	int i;
 
-	token = strtok(command, "");
-	if (token == NULL)
+	token = strtok(command, " ");
+
+	while (token != NULL && i < MAX_ARGUMENTS - 1)
 	{
-		return NULL; // Empty command
+		arguments[i] = token;
+		i++;
+		token = strtok(NULL, " ");
 	}
-
-	return token;
+	arguments[i] = NULL;
+	return (token);
 }

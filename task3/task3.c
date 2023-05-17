@@ -79,50 +79,44 @@ void execute_command(char *command)
         wait(NULL);
 }
 
-char* find_command_path(char *command, char *path)
+char *find_command_path(char *command, char *path)
 {
+    char command_path[MAX_COMMAND_LENGTH];
     struct stat file_stat;
-    char command_path[MAX_COMMAND_LENGTH], *path_copy, *path_token;
-    int command_found = 0;
-    char *command_path_copy;
+    char *path_token;
+    char *path_copy;
     if (command[0] == '/')
     {
         if (stat(command, &file_stat) == 0)
-            strcpy(command_path, command);
+            return strdup(command);
         else
             return NULL;
     }
-    else
+    
+    if (path == NULL)
     {
-        if (path == NULL)
-        {
-            printf("Error: Failed to get PATH environment variable.\n");
-            return NULL;
-        }
-        path_copy = strdup(path);
-        if (path_copy == NULL)
-            perror("strdup"),exit(EXIT_FAILURE);
-        path_token = strtok(path_copy, ":");
-        while (path_token != NULL)
-        {
-            strcpy(command_path, path_token);
-            strcat(command_path, "/");
-            strcat(command_path, command);
-            if (stat(command_path, &file_stat) == 0 && file_stat.st_mode & S_IXUSR)
-            {
-                command_found = 1;
-                break;
-            }
-            path_token = strtok(NULL, ":");
-        }
-        free(path_copy);
-        if (!command_found)
-            return NULL;
+        printf("Error: Failed to get PATH environment variable.\n");
+        return NULL;
     }
-    command_path_copy = strdup(command_path);
-    if (command_path_copy == NULL)
+    
+    path_copy = strdup(path);
+    if (path_copy == NULL)
         perror("strdup"), exit(EXIT_FAILURE);
-    return command_path_copy;
+
+    path_token = strtok(path_copy, ":");
+    while (path_token != NULL)
+    {
+        snprintf(command_path, MAX_COMMAND_LENGTH, "%s/%s", path_token, command);
+        if (stat(command_path, &file_stat) == 0 && file_stat.st_mode & S_IXUSR)
+        {
+            free(path_copy);
+            return strdup(command_path);
+        }
+        path_token = strtok(NULL, ":");
+    }
+
+    free(path_copy);
+    return NULL;
 }
 
 void run_shell()
@@ -134,12 +128,7 @@ void run_shell()
     while (1)
     {
         printf("$ ");
-        command = malloc(32 * sizeof(char));
-        if (command == NULL)
-        {
-            free(command);
-            break;
-        }
+
         characters_read = getline(&command, &command_length, stdin);
 
         if (characters_read <= 0)
@@ -148,23 +137,19 @@ void run_shell()
             {
                 // End of file condition (Ctrl+D)
                 printf("\n");
+                free(command); // Free the allocated memory
+                break;
             }
-            break;
         }
         trim_whitespace(command);
 
-        if (command[0] == '#')
+        if (command[0] == '#' || command[0] == '\0')
         {
-            free(command);
             continue;
         }
 
         execute_command(command);
-
-        free(command);
     }
-
-    free(command);
 }
 
 int main()

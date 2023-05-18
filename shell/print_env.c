@@ -6,7 +6,8 @@ void print_environment()
 
     while (*env != NULL)
     {
-        printf("%s\n", *env);
+        _puts(*env);
+		_puts("\n");
         env++;
     }
 }

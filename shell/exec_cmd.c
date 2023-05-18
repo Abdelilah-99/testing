@@ -17,6 +17,11 @@ void execute_command(char *command)
         token = strtok(NULL, " ");
     }
     arguments[i] = NULL;
+    if (_strcmp(command, "exit")== 0)
+    {
+    print_exit(arguments);
+    return;
+    }
     command_path = find_command_path(arguments[0], _getenv("PATH"));
     if (command_path == NULL)
     {

@@ -9,13 +9,11 @@ void run_shell()
     {
         _puts("$ ");
 
-        characters_read = getline(&command, &command_length, stdin);
+        characters_read = _getline(&command, &command_length, stdin);
         if (characters_read <= 0)
         {
             if (characters_read == -1)
-            {
                 _puts("\n");
-            }
             free(command);
             break;
         }

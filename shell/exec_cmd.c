@@ -8,7 +8,7 @@ void execute_command(char *command)
     token = strtok(command, " ");
     if (_strcmp(command, "env") == 0)
     {
-        print_environment(); 
+        print_environment();
         return;
     }
     for (; token != NULL && i < MAX_ARGUMENTS - 1; i++)

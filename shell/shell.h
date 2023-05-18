@@ -8,9 +8,11 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+#define BUFFER_SIZE 1024
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_ARGUMENTS 1024
 
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 extern char **environ;
 int _strlen(char *s);
 void _puts(char *str);

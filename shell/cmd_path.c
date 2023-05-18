@@ -8,7 +8,7 @@ char* find_command_path(char* command, char* path)
         if (stat(command, &file_stat) == 0)
             return(_strdup(command));
         else
-            return NULL;
+            return (NULL);
     }
     else
     {
@@ -16,9 +16,8 @@ char* find_command_path(char* command, char* path)
         {
             _puts("Error: Failed to get PATH environment variable. ");
 			_puts("\n");
-            return NULL;
+            return (NULL);
         }
-        
-        return traverse_path(command, path);
+        return (traverse_path(command, path));
     }
 }

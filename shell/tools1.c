@@ -28,7 +28,7 @@ if (!str)
 		i++;
 	}
 }
-char *_getenv(const char *name)
+char *_getenv(char *name)
 {
 	int i = 0;
 
@@ -36,10 +36,10 @@ char *_getenv(const char *name)
 	{
 		char *env_name = environ[i];
 
-		if (strncmp(env_name, name, strlen(name)) == 0)
+		if (_strncmp(env_name, name, _strlen(name)) == 0)
 		{
 			
-			return strchr(env_name, '=') + 1;
+			return _strchr(env_name, '=') + 1;
 		}
 	}
 

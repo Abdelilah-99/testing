@@ -5,7 +5,6 @@ char* traverse_path(char* command, char* path)
     struct stat file_stat;
     char command_path[MAX_COMMAND_LENGTH];
     char* path_token;
-
     char* path_copy = strdup(path);
     if (path_copy == NULL)
     {
@@ -13,10 +12,10 @@ char* traverse_path(char* command, char* path)
         exit(EXIT_FAILURE);
     }
     
-    path_token = strtok(path_copy, ":");
+    path_token = _strtok(path_copy, ":");
     while (path_token != NULL)
     {
-        strcpy(command_path, path_token);
+       strcpy(command_path, path_token);
         strcat(command_path, "/");
         strcat(command_path, command);
         
@@ -26,7 +25,7 @@ char* traverse_path(char* command, char* path)
             return strdup(command_path);
         }
         
-        path_token = strtok(NULL, ":");
+        path_token = _strtok(NULL, ":");
     }
     
     free(path_copy);

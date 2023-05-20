@@ -11,7 +11,7 @@
 #define BUFFER_SIZE 1024
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_ARGUMENTS 1024
-
+#define LENGTH 50
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 extern char **environ;
 int _strlen(char *s);
@@ -31,4 +31,6 @@ void exit_hdl(char *command);
 char* traverse_path(char* command, char* path);
 void print_exit(char* arr[]);
 int _atoi(char *s);
+int is_delimiter(char c, char *delim);
+char *_strtok(char *str, char *delim);
 #endif

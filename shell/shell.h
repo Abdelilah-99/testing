@@ -27,8 +27,8 @@ void trim_whitespace(char *str);
 void execute_command(char *command);
 char *find_command_path(char *command, char *path);
 void run_shell();
-void exit_hdl(char *command);
 char* traverse_path(char* command, char* path);
 void print_exit(char* arr[]);
 int _atoi(char *s);
+
 #endif

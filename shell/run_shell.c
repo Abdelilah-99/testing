@@ -21,7 +21,6 @@ void run_shell()
 
         if (command[0] == '#' || command[0] == '\0')
             continue;
-        exit_hdl(command);
         execute_command(command);
     }
 }

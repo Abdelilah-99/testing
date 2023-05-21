@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "shell.h"
-
+/**
+ * _getline - get a strin from stdint
+ * @lineptr: double pointer to char
+ * @n: skjf
+ * @stream: the type of std
+ * Return: mul
+*/
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	int c;

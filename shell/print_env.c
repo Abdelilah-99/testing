@@ -7,7 +7,7 @@ void print_environment()
     while (*env != NULL)
     {
         _puts(*env);
-		_puts("\n");
+        _puts("\n");
         env++;
     }
 }

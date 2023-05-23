@@ -7,11 +7,12 @@ void run_shell()
 
     while (1)
     {
+        
        if (isatty(STDIN_FILENO))
        {
             _puts("$ ");
         }
-        characters_read = _getline(&command, &command_length, stdin);
+        characters_read = getline(&command, &command_length, stdin);
         if (characters_read <= 0)
         {
             if (characters_read == -1)

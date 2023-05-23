@@ -42,7 +42,7 @@ char *_strdup(const char *str)
 		s[l] = *--str;
 	return (s);
 }
-char *_strchr(char *str, int c) {
+char *_strchr(const char *str, int c) {
     while (*str != '\0') {
         if (*str == c) {
             return (char *) str;

@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <stdbool.h>
 
 #define BUFFER_SIZE 1024
 #define MAX_COMMAND_LENGTH 1024
@@ -30,12 +31,9 @@ void run_shell();
 char* traverse_path(char* command, char* path);
 void print_exit(char* arr[]);
 int _atoi(char *s);
-<<<<<<< HEAD
-=======
 int is_delimiter(char c, char *delim);
-char *_strtok(char *str, char *delim);
+char *_strtok(char *str, const char *delim);
 int _strncmp(char *s1, char *s2, size_t n);
-char *_strchr(char *str, int c);
->>>>>>> 18722acfea4c956c3e0f431883a56556f08fab32
+char *_strchr(const char *str, int c);
 
 #endif
